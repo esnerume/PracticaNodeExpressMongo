@@ -45,9 +45,7 @@ router.get('/', function(req, res, next) {
 
     if (typeof precio !== 'undefined') {
         var extraerNumeros = function (precio) {
-            console.log(precio);
-            console.log(precio.match(/[0-9]+(\.[0-9][0-9]?)?/g));
-            return precio.match(/\d+/g);
+            return precio.match(/[0-9]+(\.[0-9][0-9]?)?/g);
         };
 
         if (/^\d{1,}\.?\d{1,}-$/.test(precio)) {
