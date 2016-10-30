@@ -6,6 +6,7 @@ var router = express.Router();
 var jwtAuth = require('../../lib/jwtAuth');
 // json web token auth
 router.use(jwtAuth());
+var CustomError = require('../../lib/errors');
 
 var mongoose = require('mongoose');
 var Anuncio = mongoose.model('Anuncio');
@@ -18,8 +19,6 @@ router.get('/', function(req, res, next) {
     var precio = req.query.precio;
     var venta = req.query.venta;
     var tag = req.query.tag;
-
-    // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
     var includeTotal = req.query.includeTotal === 'true';
     var sort = req.query.sort || null;
     var limit = parseInt(req.query.limit) || null;
@@ -63,6 +62,9 @@ router.get('/', function(req, res, next) {
         } else if (/^\d{1,}$/.test(precio)) {
             var valorIgualQue = extraerNumeros(precio)[0];
             filter.precio = parseInt(valorIgualQue);
+        } else {
+            next(CustomError(400, 'MALFORMED_PRICE_RANGE'));
+            return;
         }
     }
 

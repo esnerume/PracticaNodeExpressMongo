@@ -49,6 +49,10 @@ router.post('/authenticate', function(req, res, next) {
     let user = req.body.user;
     let pass = req.body.pass;
 
+    if (typeof user === 'undefined' || typeof pass === 'undefined') {
+        next(CustomError(400,'INCOMPLETE_DATA'));
+        return;
+    }
     var hashedPassword = sha256(pass);
 
     Usuario.findByEmail(user)
