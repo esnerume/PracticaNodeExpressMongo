@@ -1,0 +1,24 @@
+{
+  "anuncios":[
+    {
+      "nombre":"Bicicleta",
+      "venta":true,
+      "precio":230.15,
+      "foto":"bici.jpg",
+      "tags":[
+        "lifestyle",
+        "motor"
+      ]
+    },
+    {
+      "nombre":"iPhone 6S",
+      "venta":false,
+      "precio":850.00,
+      "foto":"iphone.jpg",
+      "tags":[
+        "lifestyle",
+        "mobile"
+      ]
+    }
+  ]
+}

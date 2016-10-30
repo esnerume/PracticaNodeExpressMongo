@@ -1,0 +1,20 @@
+{
+  "es": {
+    "INCOMPLETE_DATA": "Datos incompletos. Por favor revisa la documentación.",
+    "USER_ALREADY_EXISTS": "El usuario que intentas registrar ya existe en el sistema.",
+    "INVALID_CREDENTIALS": "Credenciales inválidas. Por favor comprueba que has escrito bien el usuario y el password.",
+    "INVALID_USER": "Usuario incorrecto.",
+    "NO_TOKEN_PROVIDED": "No se ha proporcionado el token. Para acceder a la funcionalidad del API, debes disponer de un token válid.",
+    "FAILED_AUTHENTICATE_TOKEN": "No se ha podido autenticar el token. Prueba a solicitar uno nuevo.",
+    "MALFORMED_PRICE_RANGE": "El formato de precio o rango de procios no es correcto."
+  },
+  "en": {
+    "INCOMPLETE_DATA": "Incompleted Data. Plase check the documentaion out.",
+    "USER_ALREADY_EXISTS": "The user you are trying to register is already in the system.",
+    "INVALID_CREDENTIALS": "Invalid Credentials. Please check if the user and the password you filled are correct.",
+    "INVALID_USER": "Invalid User",
+    "NO_TOKEN_PROVIDED": "The token was not provided, you must provide it to access the the API Services.",
+    "FAILED_AUTHENTICATE_TOKEN": "We could not authenticate with the token you provided. Try to request a new one.",
+    "MALFORMED_PRICE_RANGE": "The price or the the proce range is wrong. Please review the documentation."
+  }
+}
