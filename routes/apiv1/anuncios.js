@@ -45,23 +45,25 @@ router.get('/', function(req, res, next) {
 
     if (typeof precio !== 'undefined') {
         var extraerNumeros = function (precio) {
+            console.log(precio);
+            console.log(precio.match(/[0-9]+(\.[0-9][0-9]?)?/g));
             return precio.match(/\d+/g);
         };
 
-        if (/^\d{1,}-$/.test(precio)) {
+        if (/^\d{1,}\.?\d{1,}-$/.test(precio)) {
             var valorMayorQue = extraerNumeros(precio)[0];
-            filter.precio = {'$gte': parseInt(valorMayorQue)};
-        } else if (/^-\d{1,}$/.test(precio)) {
+            filter.precio = {'$gte': parseFloat(valorMayorQue)};
+        } else if (/^-\d{1,}\.?\d{1,}$/.test(precio)) {
             var valorMenorQue = extraerNumeros(precio)[0];
-            filter.precio = {'$lte': parseInt(valorMenorQue)};
-        } else if (/^\d{1,}-\d{1,}$/.test(precio)) {
+            filter.precio = {'$lte': parseFloat(valorMenorQue)};
+        } else if (/^\d{1,}\.?\d{1,}-\d{1,}\.?\d{1,}$/.test(precio)) {
             var valores = extraerNumeros(precio);
             var valorDesde = valores[0];
             var valorHasta = valores[1];
-            filter.precio = {'$gte': parseInt(valorDesde), '$lte': parseInt(valorHasta)};
-        } else if (/^\d{1,}$/.test(precio)) {
+            filter.precio = {'$gte': parseFloat(valorDesde), '$lte': parseFloat(valorHasta)};
+        } else if (/^\d{1,}\.?\d{1,}$/.test(precio)) {
             var valorIgualQue = extraerNumeros(precio)[0];
-            filter.precio = parseInt(valorIgualQue);
+            filter.precio = parseFloat(valorIgualQue);
         } else {
             next(CustomError(400, 'MALFORMED_PRICE_RANGE'));
             return;
