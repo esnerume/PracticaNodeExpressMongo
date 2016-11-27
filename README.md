@@ -2,7 +2,22 @@
 ## Version Actual: 1.0
 ## Introduction
 Este proyecto contiene el API de Nodepop, que será consumido por aplicaciones IOS y Android. Nodepop es una app de venta de artículos de segunda mano. 
-Los servicios de Nodepop permitirán buscar artículos de segunda mano pudiendo aplicar filtros de busqueda, así como poder devolver los resultados paginados. 
+Los servicios de Nodepop permitirán buscar artículos de segunda mano pudiendo aplicar filtros de busqueda, así como devolver los resultados paginados. 
+
+### Despliegue del Servicio en Amazon AWS
+Se ha adquirido un dominio llamado luegodonde.com, y se ha creado un subdominio específico que apunta a la instancia de Amazon EC2 en la que está desplegado el Api de Nodepop **http://services.luegodonde.com**
+
+Los recursos estáticos los devolverá directamente el NGINX, mientras que las peticiones al Api NGINX las delegará en node.
+
+Ejemplos de llamadas a estaticos (En todas ellas, se devuelve la cabecera X-Owner con valor esnerume, que es el nombre de mi cuenta de GitHub. Se puede ver además que no pasa por node ya que en estas llemadas no se devuelve la cabecera X-Powered-By:Express, como ocurre en las llamadas al Api):
+
+**http://services.luegodonde.com/stylesheets/style.css**
+**http://services.luegodonde.com/images/anuncios/bici.jpg**
+**http://services.luegodonde.com/images/anuncios/iphone.jpg**
+
+**Nota:** La ip de la máquina en amazon es 34.192.211.34, por lo que para acceder a la plantilla web de **startbootstrap.com** se puede acceder a traves de http://34.192.211.34
+
+Adicionalmente he asociado otra plantilla a **http://www.luegodonde.com/**
 
 ### Operaciones disponibles del API:
 - Registro (nombre, email, contraseña)
@@ -14,19 +29,19 @@ Los servicios de Nodepop permitirán buscar artículos de segunda mano pudiendo 
 ### Endpoints
 Todas las llamadas POST que se envíen al API deben llevar el siguiente content-type: **x-www-form-urlencoded**.
 
-Todos los endpoints devolverán el resultado con formato JSON tanto en el caso de que la operación se ejecute correctamente, como si se ha producido un error. 
-En caso de que la llamada ejecute correctamente el servidor devolverá la clave **success** a **true**, en caso de error la clave **success** valdrá **false** y 
+Todos los endpoints devolverán el resultado con formato JSON, tanto en el caso de que la operación se ejecute correctamente, como si se ha producido un error. 
+En caso de que la llamada se ejecute correctamente, el servidor devolverá la clave **success** a **true**, y en caso de error, la clave **success** valdrá **false** y 
 vendrá acompañada de una clave **error** que contendrá una descripción del error. 
 
 
-Para que los mensajes de error de la aplicación se devuelvan en un idioma predeterminads (Español o Inglés), todas las llamadas deben llevar la cabecera **api-language** pudiendo tener como valores (**es** o **en**). 
+Para que los mensajes de error de la aplicación se devuelvan en un idioma predeterminado (Español o Inglés), todas las llamadas deben llevar la cabecera **api-language** pudiendo tener como posibles valores (**es** o **en**). 
 
-**NOTA:** En caso de no proporcionar esta cabecera, los mensajes de error se devolverán en español.*
+**NOTA:** En caso de no proporcionar esta cabecera, los mensajes de error se devolverán en español.
 
 
 ##### POST /usuarios/authenticate 
 
-Este endpount permite autenticar al usuario (pasándole el usuario y el password) y en caso de existir en el sistema y coindicir la password, devolverá un token JWT, que deberá ser enviado
+Este endpoint permite autenticar al usuario (pasándole el usuario y el password) y en caso de existir en el sistema y coindicir la password, devolverá un token JWT, que deberá ser enviado
 en las siguientes peticiones para poder acceder a los servicios del api
 
 Parámetros POST:
@@ -167,6 +182,10 @@ Ejemplo de llamada al servicio:
 **GET** 
 
 http://localhost:3000/apiv1/anuncios?**tag**=mobile&**venta**=false&**nombre**=ip&**precio**=50-&**start**=0&**limit**=2&**sort**=precio&**includeTotal**=true
+
+**Ejemplo en Amazon AWS**
+
+http://services.luegodonde.com/apiv1/anuncios?**tag**=mobile&**venta**=false&**nombre**=ip&**precio**=50-&**start**=0&**limit**=2&**sort**=precio&**includeTotal**=true
 
 
 ### Utilidades
