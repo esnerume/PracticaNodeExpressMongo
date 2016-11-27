@@ -5,17 +5,17 @@ Este proyecto contiene el API de Nodepop, que será consumido por aplicaciones I
 Los servicios de Nodepop permitirán buscar artículos de segunda mano pudiendo aplicar filtros de busqueda, así como devolver los resultados paginados. 
 
 ### Despliegue del Servicio en Amazon AWS
-Se ha adquirido un dominio llamado luegodonde.com, y se ha creado un subdominio específico que apunta a la instancia de Amazon EC2 en la que está desplegado el Api de Nodepop **http://services.luegodonde.com**
+Se ha adquirido un dominio llamado **luegodonde.com**, y se ha creado un subdominio específico (**services**) que apunta a la instancia de Amazon EC2 en la que está desplegado el Api de Nodepop **http://services.luegodonde.com**
 
 Los recursos estáticos los devolverá directamente el NGINX, mientras que las peticiones al Api NGINX las delegará en node.
 
-Ejemplos de llamadas a estaticos (En todas ellas, se devuelve la cabecera X-Owner con valor esnerume, que es el nombre de mi cuenta de GitHub. Se puede ver además que no pasa por node ya que en estas llemadas no se devuelve la cabecera X-Powered-By:Express, como ocurre en las llamadas al Api):
+Ejemplos de llamadas a estaticos (En todas ellas, se devuelve la cabecera **X-Owner** con valor **esnerume**, que es el nombre de mi cuenta de GitHub. Se puede ver además que no pasa por node ya que en estas llemadas no se devuelve la cabecera **X-Powered-By:Express**, como ocurre en las llamadas al Api):
 
 **http://services.luegodonde.com/stylesheets/style.css**
 **http://services.luegodonde.com/images/anuncios/bici.jpg**
 **http://services.luegodonde.com/images/anuncios/iphone.jpg**
 
-**Nota:** La ip de la máquina en amazon es 34.192.211.34, por lo que para acceder a la plantilla web de **startbootstrap.com** se puede acceder a traves de http://34.192.211.34
+**Nota:** La ip de la máquina en amazon es **34.192.211.34**, por lo que para acceder a la plantilla web de **startbootstrap.com** se puede acceder a traves de http://34.192.211.34
 
 Adicionalmente he asociado otra plantilla a **http://www.luegodonde.com/**
 
