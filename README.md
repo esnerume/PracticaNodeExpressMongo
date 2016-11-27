@@ -12,7 +12,9 @@ Los recursos estáticos los devolverá directamente el NGINX, mientras que las p
 Ejemplos de llamadas a estaticos (En todas ellas, se devuelve la cabecera **X-Owner** con valor **esnerume**, que es el nombre de mi cuenta de GitHub. Se puede ver además que no pasa por node ya que en estas llemadas no se devuelve la cabecera **X-Powered-By:Express**, como ocurre en las llamadas al Api):
 
 **http://services.luegodonde.com/stylesheets/style.css**
+
 **http://services.luegodonde.com/images/anuncios/bici.jpg**
+
 **http://services.luegodonde.com/images/anuncios/iphone.jpg**
 
 **Nota:** La ip de la máquina en amazon es **34.192.211.34**, por lo que para acceder a la plantilla web de **startbootstrap.com** se puede acceder a traves de http://34.192.211.34
